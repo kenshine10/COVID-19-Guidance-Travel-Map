@@ -407,32 +407,36 @@ def get_country_travel_to(countries_travelTo):
         
 
 def get_country_travel_from(countries_travelFrom, countries_travelTo):
-    if (countries_travelFrom != countries_travelTo):
-        travelStatus = travel_dataset_country.loc[(
-            travel_dataset_country['Country'] == countries_travelFrom) & (travel_dataset_country['Country Name'] == countries_travelTo), 'Other Country status'].iloc[0]
-        if travelStatus == 'Open Country ':
-            try:
-                return "✅",travelStatus
-            except:
-                st.warning("No data available")
-                st.stop()
-        elif travelStatus == 'Restricted Country':
-            try:
-                return "⚠️", travelStatus
-            except:
-                st.warning("No data available")
-                st.stop()
-        elif travelStatus == 'Closed Country':
-            try:
-                return "⛔", travelStatus
-            except:
-                st.warning("No data available")
-                st.stop()
-        else:
-            return st.warning("No data available"), st.stop()
-            
-    else:
-        return st.warning("No data available for selecting same country, please select two different counrties"), st.stop()
+   try: 
+        if (countries_travelFrom != countries_travelTo):
+            travelStatus = travel_dataset_country.loc[(
+                travel_dataset_country['Country'] == countries_travelFrom) & (travel_dataset_country['Country Name'] == countries_travelTo), 'Other Country status'].iloc[0]
+            if travelStatus == 'Open Country ':
+                try:
+                    return "✅",travelStatus
+                except:
+                    st.warning("No data available")
+                    st.stop()
+            elif travelStatus == 'Restricted Country':
+                try:
+                    return "⚠️", travelStatus
+                except:
+                    st.warning("No data available")
+                    st.stop()
+            elif travelStatus == 'Closed Country':
+                try:
+                    return "⛔", travelStatus
+                except:
+                    st.warning("No data available")
+                    st.stop()
+            else:
+                return st.warning("No data available"), st.stop()
+                
+#        else:
+#            return st.warning("No data available for selecting same country, please select two different counrties"), st.stop()
+    except:
+        if (countries_travelFrom != countries_travelTo):
+            return st.warning("No data available"), st.stop()   
         
 
 
