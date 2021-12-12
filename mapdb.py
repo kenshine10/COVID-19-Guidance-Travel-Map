@@ -1,5 +1,4 @@
 from os import name
-from branca.utilities import legend_scaler
 from folium.features import GeoJson, GeoJsonTooltip, GeoJsonPopup
 from ipyleaflet.leaflet import ZoomControl
 from pandas.core import indexing
